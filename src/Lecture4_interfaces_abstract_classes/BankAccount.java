@@ -1,48 +1,67 @@
 
 package Lecture4_interfaces_abstract_classes;
 /**
- * ADT Specification for BankAccount
+ * BankAccount Class
+ * Description: Represents a simple bank account with a monetary balance.
+ * Provides methods to retrieve and update the account balance while enforcing non-negative values.
 
- * Type of Data:
- * - Represents a bank account with a monetary balance
- * - Balance is stored as a double-precision floating-point number
+ * Key Features:
+ * - Stores and manages account balance.
+ * - Allows controlled updates to ensure the integrity of the balance.
 
- * Operations:
- * 1. Constructor:
- *    - Create a new bank account with an initial balance
- *    - Precondition: Initial balance must be non-negative
- *    - Postcondition: Account is created with specified initial balance
+ * @errorHandling:
+ * - Prevents negative balances during initialization or updates.
 
- * 2. getBalance():
- *    - Retrieves the current account balance
- *    - Precondition: None
- *    - Postcondition: Returns the current balance without modifying it
-
- * 3. setBalance():
- *    - Updates the account balance
- *    - Precondition: New balance must be non-negative
- *    - Postcondition: Account balance is set to the specified value
-
- * Additional Recommended Operations (not implemented):
- * 4. deposit(double amount):
- *    - Adds money to the account
- *    - Precondition: Deposit amount must be positive
- *    - Postcondition: Account balance increases by the deposited amount
-
- * 5. withdraw(double amount):
- *    - Removes money from the account
- *    - Precondition: Withdrawal amount must be positive and not exceed current balance
- *    - Postcondition: Account balance decreases by the withdrawn amount
+ * @author Bridget Wanjiru
  */
+
 public class BankAccount {
     private double balance;
+    /**
+     * Constructor for BankAccount.
+     * Initializes a bank account with a specified initial balance.
+
+     * @param balance - The initial account balance (must be non-negative).
+     * @throws IllegalArgumentException if the initial balance is negative.
+     * @pre Initial balance must be non-negative.
+     * @post The account is created with the specified initial balance.
+
+     * Example:
+     * - Input: 1000.0
+     * - Output: Account created with a balance of 1000.0
+     */
+
     public BankAccount(double balance) {
         this.balance = balance;
     }
+    /**
+     * Retrieves the current account balance.
+
+     * @return double - The current account balance.
+     * @pre None.
+     * @post Returns the current balance without modifying it.
+
+     * Example:
+     * - Input: None
+     * - Output: 1000.0 (current account balance)
+     */
 
     public double getBalance() {
         return balance;
     }
+
+    /**
+     * Updates the account balance.
+     *
+     * @param balance - The new account balance (must be non-negative).
+     * @throws IllegalArgumentException if the new balance is negative.
+     * @pre New balance must be non-negative.
+     * @post The account balance is updated to the specified value.
+
+     * Example:
+     * - Input: 1500.0
+     * - Output: Account balance updated to 1500.0
+     */
 
     public void setBalance(double balance) {
         this.balance = balance;

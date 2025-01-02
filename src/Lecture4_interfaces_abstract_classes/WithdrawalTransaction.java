@@ -4,69 +4,65 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 /**
- * ADT Specification for WithdrawalTransaction
- *
- * Type of Data:
- * - Represents a withdrawal transaction in a banking system.
- * - Extends BaseTransaction.
- * - Tracks transaction details including amount, date, and transaction ID.
- *
- * Core Operations:
- * 1. Constructor:
- *    - Creates a new withdrawal transaction.
- *    - Preconditions:
- *      * Amount must be a positive integer.
- *      * Date must be a valid Calendar object.
- *    - Postconditions:
- *      * Transaction is initialized with specified amount and date.
- *
- * 2. apply(BankAccount ba):
- *    - Applies the fee based withdrawal to a bank account.
- *    - Preconditions:
- *      * Bank account must be a valid BankAccount object.
- *      * Withdrawal amount must be positive.
- *    - Postconditions:
- *      * Bank account balance is updated based on withdrawal scenario.
- *      * Appropriate message is printed to console.
+ * WithdrawalTransaction Class
+ * Description: Represents a withdrawal transaction in the banking system, extending the functionality of BaseTransaction.
+ * Provides methods to apply, reverse, and validate withdrawal transactions, with appropriate exception handling.
 
- * 3. reverse(BankAccount ba):
- *    - Reverses a previously applied withdrawal transaction.
- *    - Preconditions:
- *      * Bank account must be a valid BankAccount object.
- *      * Transaction must have been previously applied.
- *    - Postconditions:
- *      * Bank account balance is restored to previous state.
- *      * Reversal message is printed to console.
- *      * Returns true to indicate successful reversal.
+ * Inherits:
+ * - BaseTransaction
 
- * 4. printTransactionDetails():
- *    - Prints detailed information about the transaction.
- *    - Preconditions: None.
- *    - Postconditions:
- *      * Transaction details printed to console.
- *      * No changes made to transaction or account state.
-
- * 5. checkDepositAmount(double amt):
- *    - Validates the transaction amount.
- *    - Preconditions: None.
- *    - Postconditions:
- *      * Returns true if amount is greater than 0.
- *      * Returns false otherwise.
-
- * Error Handling:
+ * Key Features:
+ * - Applies withdrawal transactions with a transaction fee.
+ * - Allows reversal of successful withdrawals.
  * - Handles insufficient funds scenarios.
- * - Provides fee-based withdrawal options.
+ *
+ * @author Bridget Wanjiru
+
  */
+
 public class WithdrawalTransaction extends BaseTransaction {
     private boolean isApplied = false;  // Flag to track if the withdrawal was applied
+
+    /**
+     * WithdrawalTransaction Class
+     * Description: Represents a withdrawal transaction in the banking system, extending the functionality of BaseTransaction.
+     * Provides methods to apply, reverse, and validate withdrawal transactions, with appropriate exception handling.
+
+     * Inherits:
+     * - BaseTransaction
+
+     * Key Features:
+     * - Applies withdrawal transactions with a transaction fee.
+     * - Allows reversal of successful withdrawals.
+     * - Handles insufficient funds scenarios.
+     *
+     * @author Bridget Wanjiru
+
+     */
 
     public WithdrawalTransaction(int amount, @NotNull Calendar date) {
         super(amount, date);
     }
 
+    /**
+     * Validates the transaction amount.
+     *
+     * @param amt - The transaction amount to validate.
+     * @return boolean - Returns true if the amount is greater than 0, false otherwise.
+     */
+
     private boolean checkDepositAmount(double amt) {
         return amt > 0;
     }
+
+    /**
+     * Applies the withdrawal transaction to a bank account, deducting a transaction fee.
+     *
+     * @param - The BankAccount object to apply the transaction to.
+     * @throws InsufficientFundsException if the account balance is insufficient for the withdrawal and fee.
+     * @pre The BankAccount object must be valid, and the withdrawal amount must be positive.
+     * @post The account balance is updated, and a confirmation message is printed to the console.
+     */
 
     @Override
     public void printTransactionDetails() {
@@ -91,7 +87,13 @@ public class WithdrawalTransaction extends BaseTransaction {
         }
     }
 
-    // Apply withdrawal with exception handling
+    /**
+     * Attempts to apply the withdrawal transaction with exception handling.
+     *
+     * @param ba - The BankAccount object to apply the transaction to.
+     * @pre The BankAccount object must be valid.
+     * @post The account balance is updated if successful, or an error message is printed if unsuccessful.
+     */
     public void applyWithExceptionHandling(BankAccount ba) {
         try {
             apply(ba);  // Attempt to apply withdrawal

@@ -3,81 +3,77 @@ package Lecture4_interfaces_abstract_classes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
+
 /**
- * ADT Specification for DepositTransaction
+ * DepositTransaction Class
+ * Description: Represents a deposit transaction in the banking system.
+ * It extends the BaseTransaction class to provide functionality for handling monetary deposits.
 
- * Type of Data:
- * - Represents a deposit transaction in a banking system
- * - Extends BaseTransaction
- * - Tracks and applies monetary deposits to a bank account
+ * Key Features:
+ * - Tracks and applies deposit transactions to bank accounts.
+ * - Validates deposit amounts to ensure only positive values are processed.
+ * - Provides detailed transaction information.
 
- * Core Operations:
- * 1. Constructor:
- *    - Creates a new deposit transaction
- *    - Preconditions:
- *      * Amount must be a positive integer
- *      * Date must be a valid, non-null Calendar object
- *    - Postconditions:
- *      * Transaction is initialized with specified amount and date
- *      * Inherited BaseTransaction properties are set
+ * Inherits:
+ * - BaseTransaction
+ *
+ * @errorHandling:
+ * - Prevents processing of invalid deposit amounts (zero or negative).
+ * - Provides feedback on successful or failed transactions.
+ *
+ * @author Bridget Wanjiru
 
- * 2. checkDepositAmount(double amt):
- *    - Validates the deposit transaction amount
- *    - Preconditions: None
- *    - Postconditions:
- *      * Returns true if amount is strictly greater than 0
- *      * Returns false for zero or negative amounts
- *    - Validation Criteria:
- *      * Ensures only positive deposit amounts are considered valid
- *      * Prevents processing of zero or negative deposits
-
- * 3. printTransactionDetails():
- *    - Displays comprehensive information about the deposit transaction
- *    - Preconditions: None
- *    - Postconditions:
- *      * Prints transaction details to console
- *      * Includes amount, date, and transaction ID
- *      * No changes made to transaction or account state
-
- * 4. apply(BankAccount ba):
- *    - Applies the deposit to a specified bank account
- *    - Preconditions:
- *      * Bank account must be a valid BankAccount object
- *      * Deposit amount must be positive
- *    - Postconditions:
- *      * If deposit is valid:
- *        - Bank account balance is increased by deposit amount
- *        - Confirmation message printed to console
- *      * If deposit is invalid:
- *        - No changes made to account balance
- *        - Error message printed to console
- *    - Transaction Processing:
- *      * Validates deposit amount before processing
- *      * Calculates and updates new account balance
- *      * Provides feedback on transaction outcome
-
-
- * Error Handling:
- * - Rejects zero or negative deposit amounts
- * - Prevents invalid deposit transactions
- * - Provides clear feedback on transaction status
-  */
+ */
 
 public class DepositTrasaction extends BaseTransaction {
+    /**
+     * Constructor for DepositTransaction.
+     * Initializes a deposit transaction with a specified amount and date.
+     *
+     * @param amount - The amount to deposit (must be positive).
+     * @param date - The date of the transaction (must be a valid, non-null Calendar object).
+     * @throws IllegalArgumentException if amount is negative or date is null.
+     * @pre Amount must be a positive integer. Date must be a valid Calendar object.
+     * @post The transaction is initialized with the specified amount and date.
+     */
+
     public DepositTrasaction(int amount, @NotNull Calendar date){
         super(amount, date);
 
     }
 
-    // Method to check if the deposit amount is valid
-    //The previous method in the original code included 0 as a valid deposit amount which is not usually the case in bank transactions
-    //The method below modifies the validity of the transaction using a single code amt>0
+    /**
+     * Validates the deposit transaction amount.
+     *
+     * @param amt - The deposit amount to validate.
+     * @return boolean - Returns true if the amount is strictly greater than 0, false otherwise.
+     * @pre None.
+     * @post Returns true for valid deposit amounts and false for invalid amounts.
+
+     * Example:
+     * - Input: 500
+     * - Output: true
+     */
+
     private boolean checkDepositAmount(double amt){
         return amt > 0;
     }
 
-    // Method to print a transaction receipt or details
-    // The changes made here from the initial toString() method is to improve readability of the output
+    /**
+     * Prints the details of the deposit transaction.
+     *
+     * @pre None.
+     * @post Prints transaction details to the console, including amount, date, and transaction ID.
+
+     * Example:
+     * - Input: None
+     * - Output:
+     *   Deposit Transaction Details:
+     *   Amount: 500
+     *   Date: Mon Jan 01 12:00:00 EAT 2024
+     *   Transaction ID: TX-12345678
+     */
+
     @Override
     public void printTransactionDetails(){
 
@@ -86,8 +82,18 @@ public class DepositTrasaction extends BaseTransaction {
         System.out.println("Date: " + getDate().getTime());
         System.out.println("Transaction ID: " + getTransactionID());
     }
+/**
+ * Applies the deposit transaction to a specified bank account.
+ *
+ * @param ba - The BankAccount object to apply the deposit to.
+ * @pre The bank account must be valid, and the deposit amount must be positive.
+ * @post The bank account balance is increased if the deposit is valid. Otherwise, no changes are made.
 
-    //Method to apply the deposit transaction to a bank account
+ * Example:
+ * - Input: BankAccount with balance 1000, deposit amount 500.
+ * - Output:
+ *   Deposit of 500 applied.New Balance: 1500
+ */
     @Override
     public void apply(BankAccount ba){
         if (checkDepositAmount(getAmount())) {

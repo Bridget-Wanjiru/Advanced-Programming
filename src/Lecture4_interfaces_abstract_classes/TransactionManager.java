@@ -2,22 +2,28 @@ package Lecture4_interfaces_abstract_classes;
 
 import java.util.Calendar;
 /**
- * ADT Specification for  TransactionManager
- * Purpose: Provides utility methods related to transaction management, such as generating unique
- * transaction IDs based on the current timestamp.
+ * TransactionManager Class
+ * Description: Provides utility methods for managing transactions, including the generation of unique transaction IDs.
 
- * Operations:
- * generateTransactionId()
- * Description: Generates a unique shortened transaction ID based on the current time in milliseconds.
- * Input: None.
- * Output: String — a shortened transaction ID with a "TX-" prefix.
- * Precondition: None.
- * Postcondition: A unique transaction ID is returned, formatted with a "TX-" prefix.
+ * Key Features:
+ * - Generates unique, shortened transaction IDs based on the current timestamp.
+ *
+ * @author Bridget Wanjiru
+
  */
-
 public class TransactionManager {
 
-    // Method to generate a unique shortened transaction ID from the current time
+    /**
+     * Generates a unique transaction ID based on the current timestamp.
+
+     * @return String - A unique transaction ID prefixed with "TX-" and shortened to 8 characters for clarity.
+     * @pre None.
+     * @post A unique transaction ID is returned, formatted with a "TX-" prefix.
+
+     * Example:
+     * - Input: None
+     * - Output: TX-12345678
+     */
     public static String generateTransactionId() {
         Calendar calendar = Calendar.getInstance();
         long timestamp = calendar.getTimeInMillis();  // Get current time in milliseconds

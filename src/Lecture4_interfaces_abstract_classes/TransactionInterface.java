@@ -1,59 +1,60 @@
 package Lecture4_interfaces_abstract_classes;
 import java.util.Calendar;
 
-/**
- * ADT Specification for TransactionInterface
+  /**
+   * TransactionInterface
+   * Description: Defines the blueprint for transaction-related operations in a banking system.
+   * Classes implementing this interface must provide concrete implementations for retrieving
+   * transaction details like amount, date, and unique identifiers.
 
- * Type of Data:
- * - Defines a contract for transaction-related operations in a banking system
- * - Serves as a blueprint for implementing different types of financial transactions
+   * Key Features:
+   * - Ensures a consistent contract for all financial transaction types.
+   * - Promotes abstraction and modularity by defining core transaction operations.
+     * Core Operations:
+     * - Retrieve transaction amount, date, and unique identifier.
 
- * Core Operations:
- * 1. getAmount():
- *    - Retrieves the monetary amount associated with the transaction
- *    - Preconditions: None
- *    - Postconditions:
- *      * Returns the transaction amount as a double-precision floating-point number
- *      * Does not modify the transaction state
- *    - Expected Behavior:
- *      * Must return a non-negative numeric value
- *      * Represents the absolute value of the transaction
+   * @author Bridget Wanjiru
 
- * 2. getDate():
- *    - Retrieves the date of the transaction
- *    - Preconditions: None
- *    - Postconditions:
- *      * Returns a Calendar object representing the transaction date
- *      * Does not modify the transaction state
- *    - Expected Behavior:
- *      * Must return a valid, non-null Calendar instance
- *      * Represents the exact timestamp of the transaction
-
- * 3. getTransactionID():
- *    - Retrieves a unique identifier for the transaction
- *    - Preconditions: None
- *    - Postconditions:
- *      * Returns a unique string identifier
- *      * Does not modify the transaction state
- *    - Expected Behavior:
- *      * Must return a non-null, unique identifier
- *      * Identifier should be consistent throughout the transaction lifecycle
-
- */
-
-/**
- * Interface for Transactions
- * Any class that defines a transaction is expected to implement this Interface
- */
+*/
 public interface TransactionInterface {
 
-    // Method to get the transaction amount
+    /**
+     * Retrieves the monetary amount associated with the transaction.
+     *
+     * @return double - The transaction amount as a non-negative numeric value.
+     * @pre None.
+     * @post Returns the absolute value of the transaction. Does not modify the transaction state.
+
+     * Example:
+     * - Input: None
+     * - Output: 500.0 (transaction amount in currency units)
+     */
     double getAmount();
 
-    // Method to get the transaction date
+    /**
+     * Retrieves the date of the transaction.
+
+     * @return Calendar - A valid Calendar object representing the transaction date and time.
+     * @pre None.
+     * @post Returns a non-null Calendar instance. Does not modify the transaction state.
+
+     * Example:
+     * - Input: None
+     * - Output: Calendar instance with the transaction timestamp.
+     */
     Calendar getDate();
 
-    // Method to get a unique identifier for the transaction
+ /*
+  * Retrieves a unique identifier for the transaction.
+  *
+  * @return String - A non-null, unique string identifier for the transaction.
+  * @pre None.
+  * @post Returns a consistent identifier that remains unique across the transaction's lifecycle.
+
+  * Example:
+  * - Input: None
+  * - Output: "TX-1
+   */
     String getTransactionID();
 
 }
